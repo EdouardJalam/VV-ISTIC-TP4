@@ -1,17 +1,41 @@
 package fr.istic.vv;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BinaryHeap<T> {
 
-    public BinaryHeap(Comparator<T> comparator) {  }
+    private Comparator<T> comparator;
+	private List<T> list = new ArrayList<T>();
 
-    public T pop() { return null; }
+    public BinaryHeap(Comparator<T> comparator) {
+    	this.comparator = comparator;
+    }
 
-    public T peek() { return null; }
+    public Comparator<T> getComparator() {
+		return comparator;
+	}
 
-    public void push(T element) { }
+	public T pop() {
+    	if(list.isEmpty()) throw new NoSuchElementException();
+    	return list.remove(list.size()-1);
+    }
 
-    public int count() { return 0; }
+    public T peek() {
+    	if(list.isEmpty()) throw new NoSuchElementException();
+    	return list.get(list.size()-1);
+    }
+
+    public void push(T element) {
+    	list.add(element);
+    	list.sort(comparator);
+    }
+
+    public int count() {
+    	return list.size();
+    }
+
 
 }
